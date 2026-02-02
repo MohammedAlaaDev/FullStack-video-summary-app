@@ -1,50 +1,36 @@
 import axios from "axios";
 import qs from "qs";
-import { HeroSection } from "@/components/custom/hero-section";
+import { HeroSection } from "@/components/custom/HeroSection";
+import { getStrapiURL } from "@/lib/utils";
+import { FeaturesSection } from "@/components/custom/FeaturesSection";
+import { getHomeData } from "@/data/loaders";
 
-const homePageQuery = qs.stringify({
-  populate: {
-    blocks: {
-      on: {
-        "layout.hero-section": {
-          populate: {
-            image: {
-              fields: ["url", "alternativeText"],
-            },
-            link: {
-              populate: true,
-            }
-          }
-        }
-      }
+
+
+function RenderBlocks(blocks: any) {
+  return blocks.map((block: any) => {
+    switch (block.__component) {
+      case "layout.hero-section":
+        return <HeroSection key={block.id} data={block} />;
+      case "layout.features-section":
+        return <FeaturesSection key={block.id} data={block} />;
     }
-  }
-})
-
-async function getStrapiData(path: string) {
-  const baseUrl = "http://localhost:1337";
-  const url = new URL(path, baseUrl);
-
-  url.search = homePageQuery;
-
-  try {
-    const res = await axios.get(url.href);
-    const data = await res.data.data;
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
+  });
 }
 
 export default async function Home() {
 
-
-  const data = await getStrapiData(`/api/home-page`);
-  const { title, description, blocks } = data;
+  const data = await getHomeData();
+  console.log(data);
+  const { blocks } = data;
   console.log(blocks[0]);
+  console.log(blocks[1]);
+
+  if (!blocks) return <div>Not Found</div>;
+
   return (
     <main >
-      <HeroSection data={blocks[0]} />
+      {RenderBlocks(blocks)}
     </main>
   );
 }

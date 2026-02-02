@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "main_roots",
+  "info": {
+    "singularName": "main-root",
+    "pluralName": "main-roots",
+    "displayName": "Main Root"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Header": {
+      "type": "component",
+      "component": "layout.header",
+      "repeatable": false
+    },
+    "Footer": {
+      "type": "component",
+      "component": "layout.footer",
+      "repeatable": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

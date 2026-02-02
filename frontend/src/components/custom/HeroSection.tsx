@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { StrapiImage } from "./StrapiImage";
 
 interface ImageProps {
     id: number;
@@ -25,21 +26,6 @@ interface HeroSectionProps {
     }
 }
 
-/* 
-__component: 'layout.hero-section',
-    id: 2,
-    heading: 'epic next',
-    subHeading: 'you\'re all awesome',
-    image: {
-      id: 1,
-      documentId: 'ta87isc28qf0z3bcnh812m2j',
-      url: '/uploads/ac13_f5a971948f.jpg',
-      alternativeText: null
-    },
-  }
-
-*/
-
 const styles = {
     header: "relative h-[600px] overflow-hidden",
     backgroundImage: "absolute inset-0 object-cover w-full h-full",
@@ -60,15 +46,11 @@ export function HeroSection({ data }: Readonly<HeroSectionProps>) {
     console.dir(data, { depth: null });
     return (
         <header className={styles.header}>
-            <img
+            <StrapiImage
                 alt="Background"
                 className={styles.backgroundImage}
                 height={1080}
-                src={`http://localhost:1337${image.url}`}
-                style={{
-                    aspectRatio: "1920/1080",
-                    objectFit: "cover",
-                }}
+                src={image.url}
                 width={1920}
             />
             <div className={styles.overlay}>
