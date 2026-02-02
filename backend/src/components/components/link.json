@@ -13,7 +13,7 @@
     },
     "isExternal": {
       "type": "boolean",
-      "default": false
+      "default": true
     }
   },
   "config": {}

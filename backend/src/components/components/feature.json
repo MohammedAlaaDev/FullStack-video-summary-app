@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_components_features",
+  "info": {
+    "displayName": "feature"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "subHeading": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "clock",
+        "check",
+        "cloud"
+      ]
+    }
+  },
+  "config": {}
+}
