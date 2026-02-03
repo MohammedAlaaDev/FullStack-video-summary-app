@@ -39,6 +39,7 @@ export function FooterSection({ data }: IFooterProps) {
                                 className={styles.socialLink}
                                 href={media.url}
                                 key={media.id}
+                                target="_blank"
                             >
                                 {selectSocialIcon(media.url)}
                                 <span className={styles.srOnly}>Visit us at {media.label}</span>

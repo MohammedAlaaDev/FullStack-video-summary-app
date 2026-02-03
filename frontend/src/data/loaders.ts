@@ -16,12 +16,13 @@ async function fetchData(url: string) {
         })
         return res.data.data;
     } catch (err) {
-        console.log(err);
+        console.error(err);
         throw err;
     }
 }
 
 export async function getHomeData() {
+    // throw new Error("Not Found");
     const url = new URL("/api/home-page", baseUrl);
     const homePageQuery = qs.stringify({
         populate: {
@@ -65,9 +66,23 @@ export async function getMainRootData() {
     })
     try {
         const res = await fetchData(url.href);
-        console.log(res);
         return res;
     } catch (err) {
-        console.log(err)
+        console.error(err);
+        throw err;
+    }
+}
+
+export async function getMetaData() {
+    const url = new URL("/api/main-root", baseUrl);
+    url.search = qs.stringify({
+        fields: ["title", "description"],
+    })
+    try {
+        const res = await fetchData(url.href);
+        return res;
+    } catch (err) {
+        console.error(err);
+        throw err;
     }
 }
