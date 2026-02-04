@@ -13,6 +13,9 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useActionState } from "react";
+import { useRegisterAction } from "@/data/actions/auth.actions";
+import { ZodErrors } from "@/components/custom/ZodErrors";
 
 const styles = {
     container: "w-full max-w-md",
@@ -26,23 +29,21 @@ const styles = {
     link: "ml-2 text-pink-500",
 };
 
-import { useActionState } from "react";
-import { signUpAction } from "@/data/actions/auth.actions";
-
 export function SignupForm() {
 
     const initialState = {
-        message: "",
+        data: null,
+        message: null,
+        zodErrors: null,
     }
 
-
-    const [formState, handleSignUp] = useActionState(signUpAction, initialState);
+    const [formState, formAction] = useActionState(useRegisterAction, initialState);
 
     console.log(formState);
 
     return (
         <div className={styles.container}>
-            <form action={handleSignUp}>
+            <form action={formAction}>
                 <Card>
                     <CardHeader className={styles.header}>
                         <CardTitle className={styles.title}>Sign Up</CardTitle>
@@ -59,6 +60,7 @@ export function SignupForm() {
                                 type="text"
                                 placeholder="username"
                             />
+                            <ZodErrors error={formState?.zodErrors?.username} />
                         </div>
                         <div className={styles.fieldGroup}>
                             <Label htmlFor="email">Email</Label>
@@ -68,6 +70,7 @@ export function SignupForm() {
                                 type="email"
                                 placeholder="name@example.com"
                             />
+                            <ZodErrors error={formState?.zodErrors?.email} />
                         </div>
                         <div className={styles.fieldGroup}>
                             <Label htmlFor="password">Password</Label>
@@ -77,6 +80,7 @@ export function SignupForm() {
                                 type="password"
                                 placeholder="password"
                             />
+                            <ZodErrors error={formState?.zodErrors?.password} />
                         </div>
                     </CardContent>
                     <CardFooter className={styles.footer}>
