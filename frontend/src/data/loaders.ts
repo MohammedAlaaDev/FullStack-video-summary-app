@@ -22,7 +22,6 @@ async function fetchData(url: string) {
 }
 
 export async function getHomeData() {
-    // throw new Error("Not Found");
     const url = new URL("/api/home-page", baseUrl);
     const homePageQuery = qs.stringify({
         populate: {
