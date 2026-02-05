@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { useActionState } from "react";
 import { useRegisterAction } from "@/data/actions/auth.actions";
 import { ZodErrors } from "@/components/custom/ZodErrors";
+import { StrapiErrors } from "../custom/StrapiErrors";
 
 const styles = {
     container: "w-full max-w-md",
@@ -30,7 +31,6 @@ const styles = {
 };
 
 export function SignupForm() {
-
     const initialState = {
         data: null,
         message: null,
@@ -85,6 +85,7 @@ export function SignupForm() {
                     </CardContent>
                     <CardFooter className={styles.footer}>
                         <Button type="submit" className={styles.button}>Sign Up</Button>
+                        <StrapiErrors error={formState?.strapiErrors}/>
                     </CardFooter>
                 </Card>
                 <div className={styles.prompt}>
