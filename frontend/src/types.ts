@@ -25,3 +25,45 @@ export type TFooter = {
     socialMedia: TSocialMedia;
     logoLink: Tlink;
 }
+
+export type TRegisterUser = {
+    username: string;
+    email: string;
+    password: string;
+}
+
+export type TLoginUser = {
+    identifier: string;
+    password: string;
+}
+
+export type TAuthUser = {
+    id: number;
+    documentId: string;
+    username: string;
+    email: string;
+    firstName?: string;
+    lastName?: string;
+    bio?: string;
+    image?: any;
+    credits?: number;
+    provider: string;
+    confirmed: boolean;
+    blocked: boolean;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+}
+
+export type TAuthResponse = {
+    jwt: string;
+    user: TAuthUser;
+}
+
+export type TStrapiError = {
+    error: {
+        status: number;
+        name: string;
+        message: string;
+    }
+};
